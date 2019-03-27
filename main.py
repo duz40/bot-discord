@@ -63,7 +63,7 @@ async def on_message(message):
         cat_photo = json.dumps(json_cat["file"]).strip("\"")
         imagem.set_image(url=cat_photo)
         await client.send_message(message.channel, cat_photo, embed=imagem)
-    if message.content.lower() == "&meacuda":
+    if message.content.lower() == "&gifcat":
         imagem = discord.Embed(title="", description="", color=0x32363c)
         json_cat_gif = json.loads(
             urllib.request.urlopen("http://thecatapi.com/api/images/get?format=json&type=gif").read())
