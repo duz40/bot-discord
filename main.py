@@ -16,7 +16,7 @@ import requests
 import http.client
 from igdb_api_python.igdb import igdb
 
-from tokens import CLIENT
+from tokens import CLIENT, CAT_API
 from commands import BOT_COMMANDS
 from mapsOW import MAPS_DICT
 
@@ -65,8 +65,11 @@ async def on_message(message):
         await client.send_message(message.channel, cat_photo, embed=imagem)
     if message.content.lower() == "&meacuda":
         imagem = discord.Embed(title="", description="", color=0x32363c)
+        caturl = "https://api.thecatapi.com/v1/images/search?format=json&mime_types=gif"
+        hdr = {'X-Api-Key': CAT_API}
+        req = urllib.request.Request(caturl, headers=hdr)
         json_cat_gif = json.loads(
-            urllib.request.urlopen("http://thecatapi.com/api/images/get?format=json&type=gif").read())
+            urllib.request.urlopen(req).read())
         # print(json_cat_gif)
         cat_gif = json.dumps(json_cat_gif[0]["url"]).strip("\"")
         imagem.set_image(url=cat_gif)
