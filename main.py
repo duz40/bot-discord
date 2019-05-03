@@ -387,6 +387,8 @@ async def on_message(message):
                     embed.add_field(name="Multi-player?", value="sim", inline=True)
                 if x["id"] == 9:
                     embed.add_field(name="Co-op?", value="sim", inline=True)
+                if x["id"] == 38:
+                    embed.add_field(name="Online Co-op?", value="sim", inline=True)
             await client.send_message(message.channel, "aqui está!", embed=embed)
         except:
             await client.send_message(message.channel, "Não achei o jogo...")
