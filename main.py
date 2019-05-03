@@ -63,7 +63,7 @@ async def on_message(message):
         cat_photo = json.dumps(json_cat["file"]).strip("\"")
         imagem.set_image(url=cat_photo)
         await client.send_message(message.channel, cat_photo, embed=imagem)
-    if message.content.lower() == "&gifcat":
+    if message.content.lower() == "&meacuda":
         imagem = discord.Embed(title="", description="", color=0x32363c)
         json_cat_gif = json.loads(
             urllib.request.urlopen("http://thecatapi.com/api/images/get?format=json&type=gif").read())
@@ -356,7 +356,7 @@ async def on_message(message):
                     print(x["appid"])
                     game_id = str(x["appid"])
                     break
-            steamapp_url = "https://store.steampowered.com/api/appdetails?appids=" + game_id
+            steamapp_url = "https://store.steampowered.com/api/appdetails?cc=br&appids=" + game_id
             game_req = requests.get(steamapp_url).json()
             if game_req[game_id]["success"] is True:
                 game_info = game_req[game_id]["data"]
@@ -393,7 +393,7 @@ async def on_message(message):
 
     if message.content.lower() == "&promosteam":
         try:
-            featured_url = "https://store.steampowered.com/api/featuredcategories/"
+            featured_url = "https://store.steampowered.com/api/featuredcategories/?cc=br"
             result = requests.get(featured_url).json()
             promos = result["specials"]["items"]
             promo_games = ""
